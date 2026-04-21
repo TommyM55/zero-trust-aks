@@ -7,7 +7,7 @@ variable "resource_group_name" {
 variable "location" {
   description = "Azure region"
   type        = string
-  default     = "East US"
+  default     = "Central US"
 }
 
 variable "cluster_name" {
@@ -25,5 +25,5 @@ variable "node_count" {
 variable "node_size" {
   description = "VM size for cluster nodes"
   type        = string
-  default     = "Standard_DC2s_v3"
+  default     = "Standard_D2s_v3"
 }
