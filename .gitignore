@@ -1,0 +1,15 @@
+# OpenTofu/Terraform
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+*.tfvars
+crash.log
+
+# Sensitive files
+kubeconfig
+*.pem
+*.key
+
+# OS
+.DS_Store
