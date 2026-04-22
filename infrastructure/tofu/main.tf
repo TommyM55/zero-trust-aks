@@ -15,3 +15,12 @@ module "aks" {
   node_size           = var.node_size
   subnet_id           = module.networking.aks_subnet_id
 }
+
+module "acr" {
+  source = "./modules/acr"
+
+  acr_name            = var.acr_name
+  location            = var.location
+  resource_group_name = module.networking.resource_group_name
+  aks_identity        = module.aks.cluster_identity
+}

@@ -27,3 +27,9 @@ variable "node_size" {
   type        = string
   default     = "Standard_D2s_v3"
 }
+
+variable "acr_name" {
+  description = "Azure Container Registry name - must be globally unique, alphanumeric only"
+  type        = string
+  default     = "zerotrustack"
+}
