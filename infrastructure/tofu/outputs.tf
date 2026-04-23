@@ -13,3 +13,23 @@ output "cluster_identity" {
 output "acr_login_server" {
   value = module.acr.acr_login_server
 }
+
+output "keyvault_name" {
+  value = module.keyvault.keyvault_name
+}
+
+output "keyvault_uri" {
+  value = module.keyvault.keyvault_uri
+}
+
+output "products_client_id" {
+  value = module.keyvault.products_client_id
+}
+
+output "orders_client_id" {
+  value = module.keyvault.orders_client_id
+}
+
+output "frontend_client_id" {
+  value = module.keyvault.frontend_client_id
+}

@@ -14,3 +14,7 @@ output "cluster_identity" {
 output "kubelet_identity" {
   value = azurerm_kubernetes_cluster.main.kubelet_identity[0].object_id
 }
+
+output "oidc_issuer_url" {
+  value = azurerm_kubernetes_cluster.main.oidc_issuer_url
+}

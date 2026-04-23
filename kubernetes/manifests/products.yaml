@@ -14,16 +14,18 @@ spec:
     metadata:
       labels:
         app: products
+        azure.workload.identity/use: "true"
     spec:
+      serviceAccountName: products-sa
       containers:
       - name: products
         image: zerotrustack.azurecr.io/products:latest
         ports:
         - containerPort: 5000
-        lifecycle:
-          postStart:
-            exec:
-              command: ["/bin/sh", "-c", "sleep 2"]
+        volumeMounts:
+        - name: secrets-store
+          mountPath: "/mnt/secrets"
+          readOnly: true
         resources:
           requests:
             memory: "64Mi"
@@ -43,6 +45,13 @@ spec:
             port: 5000
           initialDelaySeconds: 10
           periodSeconds: 5
+      volumes:
+      - name: secrets-store
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "products-secrets"
 ---
 apiVersion: v1
 kind: Service

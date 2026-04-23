@@ -29,7 +29,13 @@ variable "node_size" {
 }
 
 variable "acr_name" {
-  description = "Azure Container Registry name - must be globally unique, alphanumeric only"
+  description = "Azure Container Registry name"
   type        = string
   default     = "zerotrustack"
+}
+
+variable "keyvault_name" {
+  description = "Key Vault name - must be globally unique, 3-24 chars"
+  type        = string
+  default     = "zerotrust-kv"
 }

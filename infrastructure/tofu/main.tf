@@ -19,8 +19,17 @@ module "aks" {
 module "acr" {
   source = "./modules/acr"
 
-  acr_name         = var.acr_name
-  location         = var.location
+  acr_name            = var.acr_name
+  location            = var.location
   resource_group_name = module.networking.resource_group_name
-  kubelet_identity = module.aks.kubelet_identity
+  kubelet_identity    = module.aks.kubelet_identity
+}
+
+module "keyvault" {
+  source = "./modules/keyvault"
+
+  keyvault_name       = var.keyvault_name
+  location            = var.location
+  resource_group_name = module.networking.resource_group_name
+  oidc_issuer_url     = module.aks.oidc_issuer_url
 }

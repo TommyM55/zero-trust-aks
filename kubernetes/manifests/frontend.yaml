@@ -14,7 +14,9 @@ spec:
     metadata:
       labels:
         app: frontend
+        azure.workload.identity/use: "true"
     spec:
+      serviceAccountName: frontend-sa
       containers:
       - name: frontend
         image: zerotrustack.azurecr.io/frontend:latest
@@ -23,6 +25,10 @@ spec:
         env:
         - name: ORDERS_URL
           value: "http://orders-service:5001"
+        volumeMounts:
+        - name: secrets-store
+          mountPath: "/mnt/secrets"
+          readOnly: true
         resources:
           requests:
             memory: "64Mi"
@@ -34,14 +40,21 @@ spec:
           httpGet:
             path: /health
             port: 5002
-          initialDelaySeconds: 10
+          initialDelaySeconds: 15
           periodSeconds: 10
         readinessProbe:
           httpGet:
             path: /health
             port: 5002
-          initialDelaySeconds: 5
+          initialDelaySeconds: 10
           periodSeconds: 5
+      volumes:
+      - name: secrets-store
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "frontend-secrets"
 ---
 apiVersion: v1
 kind: Service
