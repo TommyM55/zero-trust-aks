@@ -19,8 +19,8 @@ module "aks" {
 module "acr" {
   source = "./modules/acr"
 
-  acr_name            = var.acr_name
-  location            = var.location
+  acr_name         = var.acr_name
+  location         = var.location
   resource_group_name = module.networking.resource_group_name
-  aks_identity        = module.aks.cluster_identity
+  kubelet_identity = module.aks.kubelet_identity
 }

@@ -10,7 +10,7 @@ variable "location" {
   type = string
 }
 
-variable "aks_identity" {
+variable "kubelet_identity" {
   type        = string
-  description = "Principal ID of the AKS cluster identity"
+  description = "Object ID of the AKS kubelet identity"
 }

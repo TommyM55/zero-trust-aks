@@ -10,3 +10,7 @@ output "kube_config" {
 output "cluster_identity" {
   value = azurerm_kubernetes_cluster.main.identity[0].principal_id
 }
+
+output "kubelet_identity" {
+  value = azurerm_kubernetes_cluster.main.kubelet_identity[0].object_id
+}

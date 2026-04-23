@@ -7,7 +7,7 @@ resource "azurerm_container_registry" "main" {
 }
 
 resource "azurerm_role_assignment" "aks_acr_pull" {
-  principal_id                     = var.aks_identity
+  principal_id                     = var.kubelet_identity
   role_definition_name             = "AcrPull"
   scope                            = azurerm_container_registry.main.id
   skip_service_principal_aad_check = true

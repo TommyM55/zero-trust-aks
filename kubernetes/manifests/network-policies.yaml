@@ -85,3 +85,27 @@ spec:
       protocol: UDP
     - port: 53
       protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-linkerd-control-plane
+  namespace: default
+spec:
+  podSelector: {}
+  policyTypes:
+  - Egress
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: linkerd
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: kube-system
+  - ports:
+    - port: 53
+      protocol: UDP
+    - port: 53
+      protocol: TCP
