@@ -35,7 +35,31 @@ variable "acr_name" {
 }
 
 variable "keyvault_name" {
-  description = "Key Vault name - must be globally unique, 3-24 chars"
+  description = "Key Vault name"
   type        = string
   default     = "zerotrust-kv"
+}
+
+variable "apim_name" {
+  description = "API Management name - must be globally unique"
+  type        = string
+  default     = "zerotrust-apim"
+}
+
+variable "publisher_name" {
+  description = "Publisher name for APIM"
+  type        = string
+  default     = "Zero Trust Project"
+}
+
+variable "publisher_email" {
+  description = "Publisher email for APIM"
+  type        = string
+  default     = "tm870522@ohio.edu"
+}
+
+variable "frontend_ip" {
+  description = "External IP of the frontend service"
+  type        = string
+  default     = "20.84.201.227"
 }

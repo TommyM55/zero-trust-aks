@@ -33,3 +33,7 @@ output "orders_client_id" {
 output "frontend_client_id" {
   value = module.keyvault.frontend_client_id
 }
+
+output "apim_gateway_url" {
+  value = module.apim.apim_gateway_url
+}
